@@ -5651,6 +5651,19 @@ public abstract class Openscape_voiceCallbackHandler {
   public void receiveErrorgetDestinationList2(java.lang.Exception e) {}
 
   /**
+   * auto generated Axis2 call back method for isUpgradeAllowed method override this method for
+   * handling normal response from isUpgradeAllowed operation
+   */
+  public void receiveResultisUpgradeAllowed(
+      openscape_voice.Openscape_voiceStub.IsUpgradeAllowedResult result) {}
+
+  /**
+   * auto generated Axis2 Error handler override this method for handling error response from
+   * isUpgradeAllowed operation
+   */
+  public void receiveErrorisUpgradeAllowed(java.lang.Exception e) {}
+
+  /**
    * auto generated Axis2 call back method for queryEndpointProvider method override this method for
    * handling normal response from queryEndpointProvider operation
    */

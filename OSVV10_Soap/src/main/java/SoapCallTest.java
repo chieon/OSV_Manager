@@ -74,10 +74,17 @@ public class SoapCallTest {
 			GetSubInfoByRel rel=new GetSubInfoByRel();
 			GetSubscriberInfoRequest getSubInforequest=new GetSubscriberInfoRequest();
 			GetSubscriberInfo2 info2=new GetSubscriberInfo2();
+			GetSubInfoRequest gsr= new GetSubInfoRequest();
+
+
 
 			ServiceId dn=new ServiceId();
 			dn.setServiceId("88880397");
 			getSubInforequest.setServiceId(dn);
+
+			gsr.setServiceId(dn);
+			rel.setGetSubInfoRequest(gsr);
+
 
 			info2.setGetSubscriberInfoRequest(getSubInforequest);
 
@@ -85,10 +92,19 @@ public class SoapCallTest {
 			GetSubscriberResult info;
 			try {
 				System.out.println("------1");
-				osv.getSubscriberInfo2(info2, hiqHEADER);
+//				osv.startgetSubscriberInfo2(info2, hiqHEADER, null);
+				info=osv.getSubscriberInfo2(info2, hiqHEADER);
+
+
+//				osv.getSubInfoByRel(rel, hiqHEADER);
+
+
+
 				System.out.println("------2");
 
-				//System.out.println("------>"+info.getPrimaryDnInfo().getConnectionInfo().getIPPhone().getIPAddr());
+				System.out.println("------>"+info.getPrimaryDnInfo().getConnectionInfo().getIPPhone().getIPAddr());
+				System.out.println("------>"+info.getPrimaryDnInfo().getListOfFeatures().getCfCSTA().getCstaType().getValue());
+				System.out.println("------>"+info.getServiceId());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
