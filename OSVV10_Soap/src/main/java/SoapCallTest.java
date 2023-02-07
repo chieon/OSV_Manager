@@ -31,6 +31,7 @@ public class SoapCallTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 		try {
 			Openscape_voiceStub osv=new Openscape_voiceStub("http://192.168.102.239:8767");
 			GetSubscriberListRequest getSubListReq = new GetSubscriberListRequest();

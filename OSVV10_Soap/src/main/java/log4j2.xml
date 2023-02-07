@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <Configuration status="INFO"> -->
+<Configuration>
+ <!--    해당 설정파일에서 사용하는 프로퍼티-->
+    <Properties>
+        <Property name="logNm">osv_v10_osvManager</Property>
+        <Property name="layoutPattern">%style{%d{yyyy/MM/dd HH:mm:ss,SSS}}{cyan} %highlight{[%-5p]}{FATAL=bg_red, ERROR=red,
+            INFO=green, DEBUG=blue}  [%C] %style{[%t]}{yellow}- %m%n -</Property>
+    </Properties>
+  <!--    LogEvent를 전달해주는 Appender-->
+    <Appenders>
+        <Console name="Console_Appender" target="SYSTEM_OUT">
+            <PatternLayout pattern="${layoutPattern}"/>
+            <!--
+            <PatternLayout pattern="%-5p: %c - %m%n" />
+            <RollingFile name="File_Appender" fileName="D:/vars/logs/VdcOSCCRest/${logNm}.log" filePattern="D:/vars/logs/VdcOSCCRest/${logNm}_%d{yyyy-MM-dd}_%i.log.gz">
+            <RollingFile name="File_Appender" fileName="D:/vars/logs/VdcOSCCRest/${logNm}.log" filePattern="D:/vars/logs/VdcOSCCRest/${logNm}_%d{yyyy}_%i.log">
+            <RollingFile name="File_Appender" fileName="/opt/apache-tomcat-8.5.61_verto/logs/VCMServer/${logNm}.log" filePattern="/opt/apache-tomcat-8.5.61/logs/VCMServer/${logNm}_%d{yyyy}_%i.log">
+            -->
+        </Console>
+        <RollingFile name="File_Appender" fileName="D:/vars/logs/VdcOSCCRest/${logNm}.log" filePattern="D:/vars/logs/VdcOSCCRest/${logNm}_%d{yyyy}_%i.log">
+            <PatternLayout pattern="${layoutPattern}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+                <TimeBasedTriggeringPolicy interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30" fileIndex="min"/>
+        </RollingFile>
+    </Appenders>
+  <!--    실제 Logger-->
+    <Loggers>
+		<Root level="error">
+		    <AppenderRef ref="Console_Appender"/>
+		</Root>
+
+	    <logger name="process.osvManager" level="error" additivity="false">
+	        <appender-ref ref="Console_Appender" />
+	    </logger>
+    </Loggers>
+</Configuration>
